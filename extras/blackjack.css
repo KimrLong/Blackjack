@@ -1,4 +1,107 @@
-body {
+#output {
+  font-size: 1.5em;
+}
+
+.icard {
+  height:160px;
+  width: 120px;
+  padding: 3px;
+  border: 1px solid black;
+  background-color: white;
+  border-radius: 10px;
+  position: absolute;
+  left:100px;
+  display: inline-block;
+  font-family: 'Lato';
+}
+
+.top-card {
+  font-size: 30px;
+  line-height: 20px;
+  left: 2px;
+  top: 2px;
+}
+.content-card {
+  text-align: center;
+  font-size: 70px;
+}
+
+.bottom-card {
+  font-size: 30px;
+  line-height: 20px;
+  right: 2px;
+  left: 2px;
+  transform: rotate(-180deg);
+  -webkit-transform: rotate(-180deg);
+  -moz-transform: rotate(-180deg);
+  -ms-transform: rotate(-180deg);
+  -o-transform: rotate(-180deg);
+}
+
+.clubs, .spades {
+  color: black;
+}
+.hearts, .diams {
+  color: red;
+}
+
+.hearts .suit::after{
+  content: '\2665'
+
+}
+.diams .suit::after{
+  content: '\2666'
+
+}
+.spades .suit::after{
+  content: '\2660'
+}
+.clubs .suit::after{
+    content: '\2663'
+}
+
+#dealerHolder, #playerHolder {
+  height: 180px;
+  width: 500px;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* body {
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
   box-sizing: border-box;
 }
@@ -97,4 +200,4 @@ button[type="reset"] {
 button[type="reset"]:hover {
   background: rgb(150, 7, 7);
   box-shadow: 0px 0px 10px 5px rgba(150, 7, 7, 0.63);
-}
+} */
