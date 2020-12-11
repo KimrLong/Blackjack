@@ -4,32 +4,168 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Blackjack</title>
-  <script src="scripts/main.js"></script>
-</head>
+  <link rel="stylesheet" href="extras/blackjack.css">
+
+<style>
+  #output {
+    font-size: 1.5em;
+  }
+
+</style>
+
+
+<head>
+
+  <!-- <link rel="stylesheet" href="extras/HereIsOneIPreparedEarlier.css"> -->
+
 <body>
-  <div class="message-box" id="messages"></div>
-  <div class="table">
-    <div class="player">
-      <label class="player-name">Dealer: 
-        <span id="dealer-points" class="points"></span>
-      </label>
-      <div id="dealer-hand" class="hand">
-        <!-- Dealer Hand -->
-      </div>
-    </div>
-    <div class="player">
-      <label class="player-name">Player: 
-        <span id="player-points" class="points"></span>
-      </label>
-      <div id="player-hand" class="hand">
-        <!-- Player Hand -->
-      </div>
-    </div>
-    <div class="buttons">
-      <button id="deal-button" type="button">Deal</button>
-      <button id="hit-button" type="button">Hit</button>
-      <button id="stand-button" type="button">Stand</button>
+
+  <div>
+    <div id="message"> Press Start Button</div>
+    <div id="start">
+      <button id="btnstart" type="button" onclick="Start()" class="btn">Start Game</button>
     </div>
   </div>
-</body>
+  <div id="output">
+    Player's Hand:
+    <div id="playerHolder"></div>
+    Dealer's Hand:
+    <div id="dealerHolder"></div>
+  </div>
+
+  <!-- <div class = "icard hearts">
+    <div class = "top-card suit">10<br>/div>
+    <div class = "content-card suit"></div>
+    <div class= "bottom-card suit">10<br></div> -->
+
+  </div>
+  <script>
+
+
+    //building deck of cards//html+javascripts
+    var cards = [];
+    var playerCards = [];
+    var dealerCards = [];
+    var cardCount = 0;
+    var suits = ["spades", "hearts", "clubs", "diams"];
+    var nums = ["A", "2", "3", "4", "5", "6", "7", "8", "9", "10", "J", "Q", "K"];
+    var output = document.getElementById("output");
+    var playerHolder = document.getElementById("playerHolder");
+    var dealerHolder = document.getElementById("dealerHolder");
+
+    for (s in suits) {
+      var suit = suits[s][0].toUpperCase();
+      var bgColor = (suit == "S" || suit == "C") ? "black" : "red";
+      for (n in nums) {
+        // output.innerHTML += "<span style='color:"+backgroundColor+"'>&"+ suits[x] + ";" + nums[j] + "</span> ";
+        var cardVal = (n > 9) ? 10 : parseInt(n)+1
+        var card = {
+          suit:suit,
+          icon:suits[s],
+          bgColor:bgColor,
+          cardNum:nums[n],
+          cardVal:cardVal,
+        }
+        cards.push(card);
+      }
+    }
+
+    function Start(){
+      shuffle(cards);
+      dealNew();
+    }
+    // var ranNum = Math.floor((Math.random()*52));
+    // output.innerHTML += "<span style='color:" + cards[ranNum].bgColor + 
+    // "'>&" + cards[ranNum].icon + ";" + cards[ranNum].cardNum + "</span>  ";
+    // }
+    function dealNew() {
+      playerCards = [];
+      dealerCards = [];
+      dealerHolder.innerHTML = "";
+      playerHolder.innerHTML = "";
+      for(x = 0; x < 2; x++){
+        dealerCards.push(cards[cardCount]);
+        dealerHolder.innerHTML += cardOutput(cardCount, x);
+        cardCount++
+        playerCards.push(cards[cardCount]);
+        playerHolder.innerHTML += cardOutput(cardCount, x);
+        cardCount++
+      }
+      console.log(dealerCards);
+      console.log(playerCards);
+
+
+    }
+
+    function cardOutput(n, x){
+      var hpos = (x > 0) ? x * 60 + 100 : 100;
+      return '<div class="icard' + cards[n].icon + '"style="left:' + hpos + 'px;"> <div class="top-card suit">' + cards[n].cardNum + '<br></div> <div class="content-card suit"></div> <div class="bottom-card suit">' + cards[n].cardNum + '<br></div> </div>';
+    }
+
+    function shuffle(array) {
+      for (var i = array.length -1; i > 0; i--) {
+        var j = Math.floor(Math.random() * (i+1));
+        var temp = array[i];
+        array[i] = array[j];
+        array[j] = temp;
+      }
+      return array;
+
+    }
+    function outputCard() {
+      output.innerHTML += "<span style='color:" + cards[cardCount].bgColor + 
+      "'>" + cards[cardCount].cardNum + "&" + cards[cardCount].icon + ";</span>  ";
+    }
+
+    </script>
+  // <div class="game">
+  //   <div class="game">
+  //     <h3>Blackjack</h3>
+  //   <div class="game-body">
+  //     <div class="game-options">
+  //     <input type="button" id="btnStart" class="btn" value="start" onclick="startblackjack()">
+  //     <input type="button" class="btn" value="hit me" onclick="hitMe()">
+  //     <input type="button" class="btn" value="stay" onclick="stay()">
+  //   </div>
+  //   <div class="status" id="status"></div>
+  //   <div id="deck" class="deck">
+  //     <div id="deckcount">52</div>
+  //   </div>
+  //   <div id="players" class="players">
+  //   </div>
+  //   <div class="clear"></div>
+  //   </div>
+  // </div>
+
+
+
+  //  <div class="message-box" id="messages"></div>
+  // <div class="table">
+  //   <div class="player">
+  //     <label class="player-name">Dealer: 
+  //       <span id="dealer-points" class="points"></span>
+  //     </label>
+  //     <div id="dealer-hand" class="hand">  
+
+        // <!-- Dealer Hand -->
+    //   </div>
+    // </div>
+    // <div class="player">
+    //   <label class="player-name">Player: 
+    //     <span id="player-points" class="points"></span>
+    //   </label>
+    //   <div id="player-hand" class="hand">
+
+        // <!-- Player Hand -->
+//       </div>
+//     </div>
+//     <div class="buttons">
+//       <button id="deal-button" type="button">Deal</button>
+//       <button id="hit-button" type="button">Hit</button>
+//       <button id="stand-button" type="button">Stand</button>
+//     </div>
+  // </div>
+    
+  <script src="scripts/main.js"></script>
+  </body>
 </html>
