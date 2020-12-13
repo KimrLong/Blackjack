@@ -6,119 +6,121 @@
   <title>Blackjack</title>
   <link rel="stylesheet" href="extras/blackjack.css">
 
-<style>
-  #output {
-    font-size: 1.5em;
-  }
 
-</style>
+  
 
 
-<head>
-
-  <!-- <link rel="stylesheet" href="extras/HereIsOneIPreparedEarlier.css"> -->
+</head>
 
 <body>
-
   <div>
-    <div id="message"> Press Start Button</div>
-    <div id="start">
-      <button id="btnstart" type="button" onclick="Start()" class="btn">Start Game</button>
-    </div>
-  </div>
-  <div id="output">
-    Player's Hand:
-    <div id="playerHolder"></div>
-    Dealer's Hand:
-    <div id="dealerHolder"></div>
-  </div>
+    <div>
+      <h1>BlackJack Game</h1><small>Get to 21 or higher than the dealer</small>
+      <div id="start">
+        <button id="btnstart" type="button" onclick="Start()" class="btn">Start Game</button>
+      </div>
+      <div class="total">Total $<span id="dollars">100</span></div>
+      <div>Bet Amount $<input type="number" id="mybet" value="0" min="1" max="100"><button id="maxbet" type="button" onclick="maxbet()" class="btn">Max Bet</button>
+        <div>
+          <button id="btndeal" type="button" onclick="dealNew()" class="btn">Deal</button>
+        </div>
+      </div>
+      <div id="message">Press Start Button</div>
 
-  <!-- <div class = "icard hearts">
-    <div class = "top-card suit">10<br>/div>
-    <div class = "content-card suit"></div>
-    <div class= "bottom-card suit">10<br></div> -->
+      <div id="output">
+        Dealer Hand : <span id="dValue"></span>
+        <div id="dealerHolder"></div>
+        Player Hand : <span id="pValue"></span>
+        <div id="playerHolder"></div>
+        <div id="myactions">
+          <button id="btnhold" type="button" onclick="cardAction('hold')" class="btn">Hold</button>
+          <button id="btnhit" type="button" onclick="cardAction('hit')" class="btn">Hit</button>
+          <button id="btndouble" type="button" onclick="cardAction('double')" class="btn">Double</button>
+        </div>
 
-  </div>
-  <script>
+      </div>
 
+      <div>
+      </div>
+      <script>
+        var cards = [];
+        var playerCard = [];
+        var dealerCard = [];
+        var cardCount = 0;
+        var mydollars = 100;
+        var suits = ["spades", "hearts", "clubs", "diams"];
+        var numb = ["A", "2", "3", "4", "5", "6", "7", "8", "9", "10", "J", "Q", "K"];
+        var output = document.getElementById("output");
+        var dealerHolder = document.getElementById("dealerHolder");
+        var playerHolder = document.getElementById("playerHolder");
 
-    //building deck of cards//html+javascripts
-    var cards = [];
-    var playerCards = [];
-    var dealerCards = [];
-    var cardCount = 0;
-    var suits = ["spades", "hearts", "clubs", "diams"];
-    var nums = ["A", "2", "3", "4", "5", "6", "7", "8", "9", "10", "J", "Q", "K"];
-    var output = document.getElementById("output");
-    var playerHolder = document.getElementById("playerHolder");
-    var dealerHolder = document.getElementById("dealerHolder");
-
-    for (s in suits) {
-      var suit = suits[s][0].toUpperCase();
-      var bgColor = (suit == "S" || suit == "C") ? "black" : "red";
-      for (n in nums) {
-        // output.innerHTML += "<span style='color:"+backgroundColor+"'>&"+ suits[x] + ";" + nums[j] + "</span> ";
-        var cardVal = (n > 9) ? 10 : parseInt(n)+1
-        var card = {
-          suit:suit,
-          icon:suits[s],
-          bgColor:bgColor,
-          cardNum:nums[n],
-          cardVal:cardVal,
+        for (s in suits) {
+          var suit = suits[s][0].toUpperCase();
+          var bgcolor = (suit == "S" || suit == "C") ? "black" : "red";
+          for (n in numb) {
+            //output.innerHTML += "<span style='color:" + bgcolor + "'>&" + suits[s] + ";" + numb[n] + "</span> ";
+            var cardValue = (n > 9) ? 10 : parseInt(n) + 1
+            var card = {
+              suit: suit,
+              icon: suits[s],
+              bgcolor: bgcolor,
+              cardnum: numb[n],
+              cardvalue: cardValue
+            }
+            cards.push(card);
+          }
         }
-        cards.push(card);
-      }
-    }
 
-    function Start(){
-      shuffle(cards);
-      dealNew();
-    }
-    // var ranNum = Math.floor((Math.random()*52));
-    // output.innerHTML += "<span style='color:" + cards[ranNum].bgColor + 
-    // "'>&" + cards[ranNum].icon + ";" + cards[ranNum].cardNum + "</span>  ";
-    // }
-    function dealNew() {
-      playerCards = [];
-      dealerCards = [];
-      dealerHolder.innerHTML = "";
-      playerHolder.innerHTML = "";
-      for(x = 0; x < 2; x++){
-        dealerCards.push(cards[cardCount]);
-        dealerHolder.innerHTML += cardOutput(cardCount, x);
-        cardCount++
-        playerCards.push(cards[cardCount]);
-        playerHolder.innerHTML += cardOutput(cardCount, x);
-        cardCount++
-      }
-      console.log(dealerCards);
-      console.log(playerCards);
+        function Start() {
+          shuffleDeck(cards);
+          dealNew();
+          document.getElementById('start').style.display = 'none';
+          document.getElementById('dollars').innerHTML = mydollars;
+        }
 
+        function dealNew() {
+          playerCard = [];
+          dealerCard = [];
+          dealerHolder.innerHTML = "";
+          playerHolder.innerHTML = "";
 
-    }
+          for (x = 0; x < 2; x++) {
+            dealerCard.push(cards[cardCount]);
+            dealerHolder.innerHTML += cardOutput(cardCount, x);
+            if (x == 0) {
+              dealerHolder.innerHTML += '<div id="cover" style="left:100px;"></div>';
+            }
+            cardCount++
+            playerCard.push(cards[cardCount]);
+            playerHolder.innerHTML += cardOutput(cardCount, x);
+            cardCount++
+          }
+          console.log(dealerCard);
+          console.log(playerCard);
 
-    function cardOutput(n, x){
-      var hpos = (x > 0) ? x * 60 + 100 : 100;
-      return '<div class="icard' + cards[n].icon + '"style="left:' + hpos + 'px;"> <div class="top-card suit">' + cards[n].cardNum + '<br></div> <div class="content-card suit"></div> <div class="bottom-card suit">' + cards[n].cardNum + '<br></div> </div>';
-    }
+        }
 
-    function shuffle(array) {
-      for (var i = array.length -1; i > 0; i--) {
-        var j = Math.floor(Math.random() * (i+1));
-        var temp = array[i];
-        array[i] = array[j];
-        array[j] = temp;
-      }
-      return array;
+        function cardOutput(n, x) {
+          var hpos = (x > 0) ? x * 60 + 100 : 100;
+          return '<div class="icard ' + cards[n].icon + '" style="left:' + hpos + 'px;">  <div class="top-card suit">' + cards[n].cardnum + '<br></div>  <div class="content-card suit"></div>  <div class="bottom-card suit">' + cards[n].cardnum +
+            '<br></div> </div>';
+        }
 
-    }
-    function outputCard() {
-      output.innerHTML += "<span style='color:" + cards[cardCount].bgColor + 
-      "'>" + cards[cardCount].cardNum + "&" + cards[cardCount].icon + ";</span>  ";
-    }
+        function shuffleDeck(array) {
+          for (var i = array.length - 1; i > 0; i--) {
+            var j = Math.floor(Math.random() * (i + 1));
+            var temp = array[i];
+            array[i] = array[j];
+            array[j] = temp;
+          }
+          return array;
+        }
 
-    </script>
-  // <div class="game">
+        function outputCard() {
+          output.innerHTML += "<span style='color:" + cards[cardCount].bgcolor + "'>" + cards[cardCount].cardnum + "&" + cards[cardCount].icon + ";</span>  ";
+        }
+      </script>
+  <!-- // <div class="game">
   //   <div class="game">
   //     <h3>Blackjack</h3>
   //   <div class="game-body">
@@ -135,29 +137,29 @@
   //   </div>
   //   <div class="clear"></div>
   //   </div>
-  // </div>
+  // </div> -->
 
 
-
+<!-- 
   //  <div class="message-box" id="messages"></div>
   // <div class="table">
   //   <div class="player">
   //     <label class="player-name">Dealer: 
   //       <span id="dealer-points" class="points"></span>
   //     </label>
-  //     <div id="dealer-hand" class="hand">  
+  //     <div id="dealer-hand" class="hand">   -->
 
         // <!-- Dealer Hand -->
-    //   </div>
+    <!-- //   </div>
     // </div>
     // <div class="player">
     //   <label class="player-name">Player: 
     //     <span id="player-points" class="points"></span>
     //   </label>
-    //   <div id="player-hand" class="hand">
+    //   <div id="player-hand" class="hand"> -->
 
         // <!-- Player Hand -->
-//       </div>
+<!-- //       </div>
 //     </div>
 //     <div class="buttons">
 //       <button id="deal-button" type="button">Deal</button>
@@ -166,6 +168,6 @@
 //     </div>
   // </div>
     
-  <script src="scripts/main.js"></script>
+  <script src="scripts/main.js"></script> -->
   </body>
 </html>
