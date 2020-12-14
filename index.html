@@ -3,6 +3,8 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
   <title>Blackjack</title>
   <link rel="stylesheet" href="extras/blackjack.css">
 
@@ -11,22 +13,27 @@
   </head>
 
   <body>
+
+    <!-- Make bootstrap header row  Add Vegas background-->
     <div>
       <div>
-        <h1>BlackJack Game</h1>
-        <div id="message">Press Start Button</div>
+        <h1>BlackJack Card Game</h1>
+        <div id="message">Will you win or bust?</div>
+        <!-- Make row for start button -->
         <div id="start">
           <button id="btnstart" type="button" onclick="Start()" class="btn">Start Game</button>
         </div>
-        <div class="total">Total $<span id="dollars">100</span><br>Bet Amount $<input type="number" id="mybet" value="5" min="1" max="100"><button id="maxbet" type="button" onclick="maxbet()" class="btn">Max Bet</button>
+        <div class="total">Total $<span id="dollars">200</span><br>Bet Amount $<input type="number" id="mybet" value="10" min="10" max="200"><button id="maxbet" type="button" onclick="maxbet()" class="btn">Max Bet</button>
         </div>
+        <!-- 2 rows for dealer and player hands -->
         <div id="output">
           Dealer Hand : <span id="dValue"></span>
           <div id="dealerHolder"></div>
           Player Hand : <span id="pValue"></span>
           <div id="playerHolder"></div>
+          <!-- row for action buttons.upgrade styling -->
           <div id="myactions">
-            <button id="btnhold" type="button" onclick="cardAction('hold')" class="btn">Hold</button>
+            <button id="btnstay" type="button" onclick="cardAction('stay')" class="btn">Stay</button>
             <button id="btnhit" type="button" onclick="cardAction('hit')" class="btn">Hit</button>
             <button id="btndouble" type="button" onclick="cardAction('double')" class="btn">Double</button>
           </div>
@@ -37,6 +44,9 @@
         <div>
         </div>
         <script src="scripts/main.js"></script>
+        <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
   </body>
   </html>
   <!-- // <div class="game">

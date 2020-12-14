@@ -1,6 +1,6 @@
-// window.addEventListener('DOMContentLoaded', function() {
-//   // Execute after page load
-// })
+window.addEventListener('DOMContentLoaded', function() {
+  // Execute after page load
+})
 
 
 var cards = [];
@@ -11,9 +11,9 @@ var playerCard = [];
 var dealerCard = [];
 
 var cardCount = 0;
-var mydollars = 100;
+var mydollars = 200;
 var endplay = false;
-
+//
 var message = document.getElementById('message');
 var output = document.getElementById('output');
 var dealerHolder = document.getElementById('dealerHolder');
@@ -73,7 +73,7 @@ function dealNew() {
   deal();
   document.getElementById('btndeal').style.display = 'none';
 }
-
+//decks dont normally go past 40 cards before a new shuffle
 function redeal() {
   cardCount++;
   if (cardCount > 40) {
@@ -83,7 +83,7 @@ function redeal() {
     message.innerHTML = "New Shuffle";
   }
 }
-
+//itterate through deck
 function deal() {
   for (x = 0; x < 2; x++) {
     dealerCard.push(cards[cardCount]);
@@ -120,7 +120,7 @@ function cardAction(a) {
     case 'hit':
       playucard(); // add new card to players hand
       break;
-    case 'hold':
+    case 'stay':
       playend(); // playout and calculate
       break;
     case 'double':
@@ -137,7 +137,7 @@ function cardAction(a) {
       playucard(); // add new card to players hand
       playend(); // playout and calculate
       break;
-    default:
+      default:
       console.log('done');
       playend(); // playout and calculate
   }
@@ -184,7 +184,7 @@ function playend() {
 
   var betvalue = parseInt(document.getElementById('mybet').value) * payoutJack;
   if ((playervalue < 22 && dealervalue < playervalue) || (dealervalue > 21 && playervalue < 22)) {
-    message.innerHTML += '<span style="color:green;">You WIN! You won $' + betvalue + '</span>';
+    message.innerHTML += '<span style="color:green;">You won against the dealer! You won $' + betvalue + '</span>';
     mydollars = mydollars + (betvalue * 2);
   } else if (playervalue > 21) {
     message.innerHTML += '<span style="color:red;">Dealer Wins! You lost $' + betvalue + '</span>';
@@ -228,6 +228,10 @@ function shuffleDeck(array) {
 function outputCard() {
   output.innerHTML += "<span style='color:" + cards[cardCount].bgcolor + "'>" + cards[cardCount].cardnum + "&" + cards[cardCount].icon + ";</span>  ";
 }
+
+
+
+
 // document.getElementById("deal-button").addEventListener("click", function(){
 //   var suits = ["Spades", "Hearts", "Diamonds", "Clubs"];
 //   var values = ["2", "3", "4", "5", "6", "7", "8", "9", "10", "J", "Q", "K", "A"];

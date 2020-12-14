@@ -1,3 +1,5 @@
+
+
 #output {
   font-size: 1.5em;
 }
@@ -17,9 +19,9 @@
 }
 
 #cover {
-  height: 160px;
+  height: 180px;
   width: 120px;
-  background-color: brown;
+  background-color: rgb(44, 23, 23);
   border-radius: 10px;
   position: absolute;
   border: 1px solid black;
@@ -27,7 +29,7 @@
 }
 
 .icard {
-  height: 160px;
+  height: 180px;
   width: 120px;
   padding: 3px;
   border: 1px solid black;
@@ -41,7 +43,7 @@
 
 .top-card {
   font-size: 30px;
-  line-height: 20px;
+  line-height: 15px;
   left: 2px;
   top: 2px;
 }
@@ -89,7 +91,7 @@
 
 #dealerHolder, #playerHolder {
   height: 180px;
-  width: 500px;
+  width: 600px;
 }
 
 #message {
@@ -98,12 +100,12 @@
   text-align: center;
 }
 
-#btnhold {
-  background-color: green;
+#btnstay {
+  background-color: rgb(1, 63, 1);
 }
 
 #btnhit {
-  background-color: red;
+  background-color: rgb(59, 207, 0);
 }
 
 #btndouble {
@@ -112,12 +114,12 @@
 
 #btndeal {
   background-color: purple;
-  font-size: 50px;
+  font-size: 40px;
 }
 
 #maxbet {
-  background-color: red;
-  font-size: 12px;
+  background-color: rgb(0, 225, 255);
+  font-size: 20px;
 }
 
 #btnstart {
@@ -131,8 +133,6 @@
 .total {
   font-size: 30px;
 }
-
-
 
 
 
