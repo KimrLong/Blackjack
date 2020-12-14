@@ -2,8 +2,7 @@
   font-size: 1.5em;
 }
 
-#btndeal,
-#myactions {
+#btndeal, #myactions {
   display: none;
 }
 
@@ -20,10 +19,10 @@
 #cover {
   height: 160px;
   width: 120px;
-  background-color: rgb(218, 13, 236);
+  background-color: brown;
   border-radius: 10px;
   position: absolute;
-  border: 1px solid rgb(183, 247, 7);
+  border: 1px solid black;
   padding: 3px;
 }
 
@@ -64,13 +63,11 @@
   -o-transform: rotate(-180deg);
 }
 
-.clubs,
-.spades {
+.clubs, .spades {
   color: black;
 }
 
-.hearts,
-.diams {
+.hearts, .diams {
   color: red;
 }
 
@@ -90,14 +87,13 @@
   content: '\2663';
 }
 
-#dealerHolder,
-#playerHolder {
+#dealerHolder, #playerHolder {
   height: 180px;
   width: 500px;
 }
 
 #message {
-  height: 70px;
+  height: 90px;
   font-size: 30px;
   text-align: center;
 }
@@ -114,12 +110,22 @@
   background-color: blue;
 }
 
+#btndeal {
+  background-color: purple;
+  font-size: 50px;
+}
+
 #maxbet {
   background-color: red;
+  font-size: 12px;
 }
 
 #btnstart {
   background-color: black;
+}
+
+#mybet {
+  font-size: 30px;
 }
 
 .total {
