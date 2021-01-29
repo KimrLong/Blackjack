@@ -158,4 +158,5 @@ If you complete all of the above functionality, you can choose one or more of th
 * Use an animation to reveal a card when it is drawn.
 * Hide dealer's hole card, and reveal it before dealer's turn.
 * Keep track of wins vs losses.
-* Add betting structure instead of wins vs losses. The player with start out with a certain amount of money - say $500. There will be a minimum bet of $5. The player can choose an amount to bet before each hand.
+* Add betting structure instead of wins vs losses. The player with start out with a certain amount of money - say $500. There will be a minimum bet of $5. The player can choose an amount to bet before each hand.# Blackjack_Game
+# Blackjack_Game
