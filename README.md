@@ -15,5 +15,5 @@ You will make use of the following techniques:
 
 
 <p>
-<img src="Black_jack/images/47534867-6050-434D-8FE4-09BB50981E0D.jpeg">
+<img src="/images/47534867-6050-434D-8FE4-09BB50981E0D.jpeg">
 </p>
